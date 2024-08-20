@@ -4,7 +4,7 @@
 function getFullYear() {
     return new Date().getFullYear();
 }
-// Function that
+// Function that change footer
 function getFooterCopy(isIndex) {
     if (isIndex) {
         return "Holberton School";
