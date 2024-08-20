@@ -3,16 +3,16 @@ import './App.css';
 
 // Function that will return the current year
 function getFullYear() {
-    return new Date().getFullYear();
+  return new Date().getFullYear();
 }
 // Function that change footer
 function getFooterCopy(isIndex) {
-    if (isIndex) {
-        return "Holberton School";
-    }
-    else {
-        return "Holberton School main dashboard"
-        }
+  if (isIndex) {
+    return "Holberton School";
+  }
+  else {
+    return "Holberton School main dashboard"
+  }
 }
 
 function App() {
@@ -24,13 +24,15 @@ function App() {
       </header>
       <div className="App-body">
         <p>Login to access to the full dashboard</p>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" />
-        <br />
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" />
-        <br />
-        <button type="button">OK</button>
+        <div className="Login">
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" name="email" />
+          <br />
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" name="password" />
+          <br />
+          <button type="button">OK</button>
+        </div>
       </div>
       <footer className="App-footer">
         <p>Copyright {getFullYear()} - {getFooterCopy(true)}</p>
