@@ -1,6 +1,20 @@
 import logo from '../src/Holberton Logo.jpg';
 import './App.css';
 
+// Function that will return the current year
+function getFullYear() {
+    return new Date().getFullYear();
+}
+// Function that change footer
+function getFooterCopy(isIndex) {
+    if (isIndex) {
+        return "Holberton School";
+    }
+    else {
+        return "Holberton School main dashboard"
+        }
+}
+
 function App() {
   return (
     <div className="App">
