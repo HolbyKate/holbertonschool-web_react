@@ -36,9 +36,35 @@ h1 {
   font-size: 24px;
   margin-left: 50px;
   margin-top: 25px;
+}
+
+.Login {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  padding: 10px;
+  max-width: 600px;
 
 }
 
+.Login label {
+  font-size: 18px;
+}
+.Login input {
+  padding: 2px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  flex: 1;
+}
+
+.Login button {
+  background-color: white;
+  border :1px solid lightgrey;
+  border-radius: 5px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
 .App-footer {
   background-color: #fff;
   color: #000;
