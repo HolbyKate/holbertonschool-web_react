@@ -1,11 +1,11 @@
 // Create a function named getFullYear that will return the current year
 
 // Function that will return the current year
-function getFullYear() {
+export function getFullYear() {
     return new Date().getFullYear();
 }
 // Function that change footer
-function getFooterCopy(isIndex) {
+export function getFooterCopy(isIndex) {
     if (isIndex) {
         return "Holberton School";
     }
@@ -14,6 +14,6 @@ function getFooterCopy(isIndex) {
         }
 }
  //function to get latest notifications
-function getLatestNotification() {
+export function getLatestNotification() {
     return "<strong>Urgent requirement</strong> - complete by EOD";
 }
