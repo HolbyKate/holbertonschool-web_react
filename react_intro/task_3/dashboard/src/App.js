@@ -1,5 +1,7 @@
+import React from 'react';
 import logo from '../src/Holberton Logo.jpg';
 import './App.css';
+import { getFullYear, getFooterCopy } from "./utils";
 
 // Function that will return the current year
 function getFullYear() {
