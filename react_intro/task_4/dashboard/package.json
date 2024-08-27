@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://holbykate.github.io/react_intro",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +34,7 @@
   "devDependencies": {
     "enzyme": "^3.11.0",
     "fast-text-encoding": "^1.0.6",
+    "gh-pages": "^6.1.1",
     "jest": "^27.5.1"
   }
 }
