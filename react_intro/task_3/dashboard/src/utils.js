@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Create a function named getFullYear that will return the current year
 
 // Function that will return the current year

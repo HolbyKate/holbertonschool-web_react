@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Import the necessary functions from your utils file
 import { getFullYear, getFooterCopy, getLatestNotification } from './utils';
 
