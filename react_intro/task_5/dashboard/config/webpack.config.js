@@ -1,43 +1,33 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    mode: 'development', // Set to 'development' for better debugging and faster builds
+    entry: './src/index.js', // Ensure this path points to your main entry file
     output: {
-        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-    },
-    mode: 'development',
-    devtool: 'inline-source-map',
-    devServer: {
-        static: path.resolve(__dirname, 'dist'),
-        hot: true,
+        filename: 'bundle.js',
     },
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
-            },
-            {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
+                test: /\.(js|jsx)$/, // This regex matches both .js and .jsx files
+                exclude: /node_modules/, // Exclude node_modules to avoid processing third-party libraries
                 use: {
-                    loader: 'babel-loader',
+                    loader: 'babel-loader', // Use babel-loader to handle JavaScript and JSX files
                     options: {
-                        presets: ['@babel/preset-env'],
+                        presets: ['@babel/preset-env', '@babel/preset-react'], // Specify the Babel presets
                     },
                 },
             },
         ],
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './dist/index.html',
-        }),
-    ],
+    resolve: {
+        extensions: ['.js', '.jsx'], // Automatically resolve .js and .jsx file extensions
+    },
+    devServer: {
+        static: path.join(__dirname, 'public'), // Serve static files from the public directory
+        compress: true,
+        port: 8080,
+        hot: true, // Enable hot module replacement
+    },
 };
