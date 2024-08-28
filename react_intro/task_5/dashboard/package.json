@@ -22,8 +22,12 @@
     "build": "webpack"
   },
   "jest": {
-  "setupFilesAfterEnv": ["<rootDir>/config/setupTests.js"],
-  "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "presets": [
     "@babel/preset-env",

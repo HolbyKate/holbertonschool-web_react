@@ -1,8 +1,8 @@
+// config/webpack.config.js
 const path = require('path');
 
 module.exports = {
-    mode: 'development', // Set to 'development' for better debugging and faster builds
-    entry: './src/index.js', // Ensure this path points to your main entry file
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -10,24 +10,31 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/, // This regex matches both .js and .jsx files
-                exclude: /node_modules/, // Exclude node_modules to avoid processing third-party libraries
+                test: /\.js$|jsx/, // Regex to match .js and .jsx files
+                exclude: /node_modules/, // Exclude node_modules directory
                 use: {
-                    loader: 'babel-loader', // Use babel-loader to handle JavaScript and JSX files
+                    loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'], // Specify the Babel presets
+                        presets: ['@babel/preset-env', '@babel/preset-react'], // Presets for modern JS and React
                     },
                 },
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'], // CSS loaders
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                type: 'asset/resource', // Image loaders
             },
         ],
     },
     resolve: {
-        extensions: ['.js', '.jsx'], // Automatically resolve .js and .jsx file extensions
+        extensions: ['.js', '.jsx'], // Resolve .js and .jsx extensions
     },
     devServer: {
-        static: path.join(__dirname, 'public'), // Serve static files from the public directory
+        static: path.join(__dirname, 'public'),
         compress: true,
         port: 8080,
-        hot: true, // Enable hot module replacement
     },
 };
