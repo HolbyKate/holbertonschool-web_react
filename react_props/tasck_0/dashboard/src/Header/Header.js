@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../src/Holberton Logo.jpg';
+import logo from '../Holberton Logo.jpg';
 import './Header.css';
 
 

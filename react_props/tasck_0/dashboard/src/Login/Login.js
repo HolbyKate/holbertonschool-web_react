@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../src/Holberton Logo.jpg';
 import './Login.css';
 
 function Login() {
