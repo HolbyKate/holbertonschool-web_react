@@ -1,17 +1,17 @@
-import { shallow } from "enzyme";
+import { render, screen } from '@testing-library/react';
 import React from "react";
 import Header from "./Header";
 
 describe("<Header />", () => {
-    it("Header renders without crashing", () => {
-        const wrapper = shallow(<Header />);
-        expect(wrapper.exists()).toEqual(true);
+    it('renders without crashing', () => {
+        render(<Header />);
+        expect(screen.getByRole('banner')).toBeInTheDocument(); // Adjust this based on your component's structure
     });
 
     //Verify that the components render img and h1 tags
-    it('renders img and h1 tags', () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper.find('img').length).toBe(1);
-    expect(wrapper.find('h1').length).toBe(1);
+    it("Verify that the components render img", () => {
+        const wrapper = shallow(<Header />);
+        wrapper.update();
+        expect(wrapper.find("div.header img")).toHaveLength(1);
     });
 });

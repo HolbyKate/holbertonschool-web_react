@@ -9,8 +9,10 @@ describe("<Footer />", () => {
     });
 
     //Verify that the components at the very least render the text “Copyright”
-    it('renders the copyright text', () => {
-        const wrapper = shallow(<Footer />);
-        expect(wrapper.text()).toContain('Copyright');
+    it("Verify that the components at the very least render the text “Copyright”", () => {
+    const wrapper = shallow(<Footer />);
+    wrapper.update();
+    expect(wrapper.find("div.footer p")).toHaveLength(1);
+    expect(wrapper.find("div.footer p").text()).toContain("Copyright");
     });
 });
