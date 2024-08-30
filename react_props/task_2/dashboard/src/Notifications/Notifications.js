@@ -1,10 +1,10 @@
 // Create notifications elements
 
 import React from 'react';
-import closeIcon from '../assets/close-icon.png';
-import { getLatestNotification } from '../utils/utils';
+import { getLatestNotification } from '../utils';
 import './Notifications.css';
 import NotificationItem from './NotificationItem';
+import closeIcon from "../assets/close-icon.png";
 
 function Notifications() {
     const handleClick = () => {
@@ -17,7 +17,7 @@ function Notifications() {
                 aria-label="Close"
                 onClick={handleClick}
             >
-                <img src={closeIcon} alt="Close icon" />
+                <img src={closeIcon} alt="close-icon" />
             </button>
             <p>Here is the list of notifications</p>
             <ul>
