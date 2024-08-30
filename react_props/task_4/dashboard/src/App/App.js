@@ -5,8 +5,10 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Login from "../Login/Login";
 import Notifications from '../Notifications/Notifications';
+import PropTypes from "prop-types";
+import CourseList from "../CourseList/CourseList";
 
-function App() {
+function App({ isLoggedIn }) {
   return (
     <>
       <Notifications />
@@ -14,6 +16,7 @@ function App() {
         <Header />
       </div>
       <div className="App-body">
+        {isLoggedIn ? <CourseList /> : <Login />}
         <Login />
       </div>
       <div className="App-footer">
@@ -22,5 +25,13 @@ function App() {
     </>
   );
 }
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool,
+};
+
+App.defaultProps = {
+  isLoggedIn: false,
+};
 
 export default App;
