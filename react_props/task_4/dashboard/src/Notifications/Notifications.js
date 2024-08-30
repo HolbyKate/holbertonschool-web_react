@@ -5,6 +5,7 @@ import { getLatestNotification } from '../utils';
 import './Notifications.css';
 import NotificationItem from './NotificationItem';
 import closeIcon from "../assets/close-icon.png";
+import PropTypes from 'prop-types';
 
 function Notifications() {
     const handleClick = () => {
