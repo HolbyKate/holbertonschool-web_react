@@ -7,6 +7,7 @@ import Notifications from '../Notifications/Notifications';
 import Header from '../Header/Header';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
+import CourseList from '../CourseList/CourseList';
 
 describe("<App />", () => {
     it("App renders without crashing", () => {
@@ -36,5 +37,25 @@ describe("<App />", () => {
     it('contains the Footer component', () => {
         const wrapper = shallow(<App />);
         expect(wrapper.find(Footer).length).toBe(1);
+    });
+
+    // Check if Login component is rendered when isLoggedIn is false
+    it('contains the Login component when isLoggedIn is false', () => {
+        const wrapper = shallow(<App isLoggedIn={false} />);
+        expect(wrapper.find(Login).length).toBe(1);
+        expect(wrapper.find(CourseList).length).toBe(0);
+    });
+
+    // Check if CourseList component is rendered when isLoggedIn is true
+    describe('when isLoggedIn is true', () => {
+        it('does not include the Login component', () => {
+            const wrapper = shallow(<App isLoggedIn={true} />);
+            expect(wrapper.find(Login).length).toBe(0);
+        });
+
+        it('includes the CourseList component', () => {
+            const wrapper = shallow(<App isLoggedIn={true} />);
+            expect(wrapper.find(CourseList).length).toBe(1);
+        });
     });
 });
