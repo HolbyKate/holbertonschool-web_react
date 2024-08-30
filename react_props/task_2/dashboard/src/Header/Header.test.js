@@ -1,18 +1,16 @@
-import { shallow, mount, render } from 'enzyme';
-import { render, screen } from '@testing-library/react';
-import React from "react";
-import Header from "./Header";
+import React from 'react';
+import { shallow } from 'enzyme';
+import Header from './Header';
 
-describe("<Header />", () => {
+describe('Header Component', () => {
     it('renders without crashing', () => {
-        render(<Header />);
-        expect(screen.getByRole('banner')).toBeInTheDocument(); // Adjust this based on your component's structure
+        const wrapper = shallow(<Header />);
+        expect(wrapper.exists()).toBeTruthy();
     });
 
-    //Verify that the components render img and h1 tags
-    it("Verify that the components render img", () => {
+    it('renders img and h1 tags', () => {
         const wrapper = shallow(<Header />);
-        wrapper.update();
-        expect(wrapper.find("div.header img")).toHaveLength(1);
+        expect(wrapper.find('img')).toHaveLength(1);
+        expect(wrapper.find('h1')).toHaveLength(1);
     });
 });

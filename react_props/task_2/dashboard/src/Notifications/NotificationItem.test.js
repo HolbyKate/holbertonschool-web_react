@@ -1,24 +1,23 @@
 // NotificationItem.test.js
-import { shallow, mount, render } from 'enzyme';
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { shallow } from 'enzyme';
 import NotificationItem from './NotificationItem';
 
 describe('NotificationItem Component', () => {
-    test('renders without crashing', () => {
-        render(<NotificationItem />);
+    it('renders without crashing', () => {
+        const wrapper = shallow(<NotificationItem />);
+        expect(wrapper.exists()).toBeTruthy();
     });
 
-    test('renders the correct type and value', () => {
-        render(<NotificationItem type="default" value="test" />);
-        const listItem = screen.getByText('test');
-        expect(listItem).toHaveAttribute('data-notification-type', 'default');
+    it('renders correct HTML with type and value props', () => {
+        const wrapper = shallow(<NotificationItem type="default" value="test" />);
+        expect(wrapper.prop('data-notification-type')).toEqual('default');
+        expect(wrapper.text()).toEqual('test');
     });
 
-    test('renders the correct html content', () => {
-        const htmlContent = { __html: '<u>test</u>' };
-        render(<NotificationItem html={htmlContent} />);
-        const listItem = screen.getByRole('listitem');
-        expect(listItem.innerHTML).toBe('<u>test</u>');
+    it('renders correct HTML with html prop', () => {
+        const html = { __html: '<u>test</u>' };
+        const wrapper = shallow(<NotificationItem html={html} />);
+        expect(wrapper.prop('dangerouslySetInnerHTML')).toEqual(html);
     });
 });

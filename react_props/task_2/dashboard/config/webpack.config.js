@@ -1,38 +1,49 @@
 // config/webpack.config.js
-import { resolve as _resolve, join } from 'path';
+const path = require("path");
 
-export const entry = './src/index.js';
-export const output = {
-    path: _resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-};
-export const module = {
-    rules: [
-        {
-            test: /\.(js|jsx)$/, // Regex to match .js and .jsx files
-            exclude: /node_modules/, // Exclude node_modules directory
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env', '@babel/preset-react'], // Presets for modern JS and React
-                },
+module.exports = {
+    mode: "development",
+    devtool: "inline-source-map",
+    entry: "./src/index.js",
+    output: {
+        filename: "bundle.js",
+        path: path.resolve(__dirname, 'dist')
+    },
+    devServer: {
+        hot: true,
+        contentBase: path.resolve("./dist"),
+        compress: true,
+        port: 8564,
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react']
+                    }
+                }
             },
-        },
-        {
-            test: /\.css$/i,
-            use: ['style-loader', 'css-loader'], // CSS loaders
-        },
-        {
-            test: /\.(png|jpe?g|gif|svg)$/i,
-            type: 'asset/resource', // Image loaders
-        },
-    ],
-};
-export const resolve = {
-    extensions: ['.js', '.jsx'], // Resolve .js and .jsx extensions
-};
-export const devServer = {
-    static: join(__dirname, 'public'),
-    compress: true,
-    port: 8080,
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    "file-loader",
+                    {
+                        loader: "image-webpack-loader",
+                        options: {
+                            bypassOnDebug: true,
+                            disable: true,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
 };

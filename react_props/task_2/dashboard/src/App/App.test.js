@@ -1,12 +1,12 @@
 // Create 4 tests to see if App renders a div
 
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import App from './App';
-import Header from './Header/Header';
-import Login from './Login/Login';
-import Footer from './Footer/Footer';
-import Notifications from './Notifications';
+import Notifications from '../Notifications/Notifications';
+import Header from '../Header/Header';
+import Login from '../Login/Login';
+import Footer from '../Footer/Footer';
 
 describe("<App />", () => {
     it("App renders without crashing", () => {
