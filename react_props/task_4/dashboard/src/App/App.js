@@ -17,7 +17,6 @@ function App({ isLoggedIn }) {
       </div>
       <div className="App-body">
         {isLoggedIn ? <CourseList /> : <Login />}
-        <Login />
       </div>
       <div className="App-footer">
         <Footer />
