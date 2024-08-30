@@ -1,7 +1,7 @@
 // Create 4 tests to see if App renders a div
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount, render } from 'enzyme';
 import App from './App';
 import Header from './Header/Header';
 import Login from './Login/Login';
