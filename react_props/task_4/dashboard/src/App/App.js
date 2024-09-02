@@ -8,15 +8,15 @@ import Notifications from "../Notifications/Notifications";
 import PropTypes from "prop-types";
 import CourseList from "../CourseList/CourseList";
 
-function App({ isLoggedIn }) {
+function App({ isLoggedIn, displayDrawer}) {
   return (
     <>
-      <Notifications />
+      <Notifications displayDrawer={displayDrawer} />
       <div className="App">
         <Header />
       </div>
       <div className="App-body">
-        {isLoggedIn ? <CourseList /> : <Login />}
+        {isLoggedIn === false ? <CourseList /> : <Login />}
       </div>
       <div className="App-footer">
         <Footer />
@@ -29,8 +29,5 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool,
 };
 
-App.defaultProps = {
-  isLoggedIn: false,
-};
 
 export default App;

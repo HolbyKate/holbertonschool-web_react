@@ -7,7 +7,7 @@ import NotificationItem from './NotificationItem';
 import closeIcon from "../assets/close-icon.png";
 import PropTypes from 'prop-types';
 
-const Notifications = ({ displayDrawer }) => {
+const Notifications = ({ displayDrawer = false }) => {
     return (
         <>
             <div className="menuItem">
@@ -36,9 +36,6 @@ const Notifications = ({ displayDrawer }) => {
             )}
         </>
     );
-};
-Notifications.defaultProps = {
-    displayDrawer: false,
 };
 
 Notifications.propTypes = {
