@@ -3,6 +3,7 @@
     padding: 10px;
     margin: 10px 0;
     position: relative;
+    display: block;
 
 }
 
@@ -23,6 +24,8 @@
 
 .Notifications ul {
     margin: 0;
+    padding: 0;
+    list-style: none
 }
 
 .Notifications li[data-priority="default"] {

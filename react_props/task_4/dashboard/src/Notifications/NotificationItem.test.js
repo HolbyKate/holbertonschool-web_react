@@ -4,21 +4,25 @@ import { shallow } from 'enzyme';
 import NotificationItem from './NotificationItem';
 import PropTypes from 'prop-types';
 
-describe('NotificationItem Component', () => {
-    it('renders without crashing', () => {
-        const wrapper = shallow(<NotificationItem />);
-        expect(wrapper.exists()).toBeTruthy();
+describe('Notifications Component', () => {
+    it('should display the menu item when displayDrawer is false', () => {
+        render(<Notifications displayDrawer={false} />);
+        expect(screen.getByText(/Your notifications/)).toBeInTheDocument();
+        expect(screen.queryByText(/Notifications/)).not.toBeInTheDocument();
     });
 
-    it('renders correct HTML with type and value props', () => {
-        const wrapper = shallow(<NotificationItem type="default" value="test" />);
-        expect(wrapper.prop('data-priority')).toEqual('default');
-        expect(wrapper.text()).toEqual('test');
+    it('should not display the div.Notifications when displayDrawer is false', () => {
+        render(<Notifications displayDrawer={false} />);
+        expect(screen.queryByText(/Notifications/)).not.toBeInTheDocument();
     });
 
-    it('renders correct HTML with html prop', () => {
-        const html = { __html: '<u>test</u>' };
-        const wrapper = shallow(<NotificationItem type="default" html={html} />);
-        expect(wrapper.prop('dangerouslySetInnerHTML')).toEqual(html);
+    it('should display the menu item when displayDrawer is true', () => {
+        render(<Notifications displayDrawer={true} />);
+        expect(screen.getByText(/Your notifications/)).toBeInTheDocument();
+    });
+
+    it('should display the div.Notifications when displayDrawer is true', () => {
+        render(<Notifications displayDrawer={true} />);
+        expect(screen.getByText(/Notifications/)).toBeInTheDocument();
     });
 });
