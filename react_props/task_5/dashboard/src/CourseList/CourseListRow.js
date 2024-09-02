@@ -27,7 +27,7 @@ const CourseListRow = ({ isHeader = false, textFirstCell, textSecondCell = null 
 CourseListRow.propTypes = {
     isHeader: PropTypes.bool,
     textFirstCell: PropTypes.string.isRequired,
-    textSecondCell: PropTypes.string,
+    textSecondCell: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 // Export the component
