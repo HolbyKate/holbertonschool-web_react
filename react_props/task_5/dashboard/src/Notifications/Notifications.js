@@ -6,8 +6,9 @@ import './Notifications.css';
 import NotificationItem from './NotificationItem';
 import closeIcon from "../assets/close-icon.png";
 import PropTypes from 'prop-types';
+import NotificationItemShape from './NotificationItemShape';
 
-const Notifications = ({ displayDrawer = false }) => {
+const Notifications = ({ displayDrawer = false, listNotifications = [] }) => {
     return (
         <>
             <div className="menuItem">
@@ -28,9 +29,18 @@ const Notifications = ({ displayDrawer = false }) => {
                     </button>
                     <p>Here is the list of notifications</p>
                     <ul>
-                        <NotificationItem type="default" value="New course available" />
-                        <NotificationItem type="urgent" value="New resume available" />
-                        <NotificationItem type="urgent" html={{ __html: getLatestNotification() }} />
+                        {listNotifications.length === 0 ? (
+                            <NotificationItem type="default" value="No new notification for now" />
+                        ) : (
+                            listNotifications.map((notification) => (
+                                <NotificationItem
+                                    key={notification.id}
+                                    type={notification.type}
+                                    value={notification.value}
+                                    html={notification.html}
+                                />
+                            ))
+                        )}
                     </ul>
                 </div>
             )}
@@ -40,6 +50,11 @@ const Notifications = ({ displayDrawer = false }) => {
 
 Notifications.propTypes = {
     displayDrawer: PropTypes.bool,
+    listNotifications: PropTypes.arrayOf(NotificationItemShape),
 };
 
+Notifications.defaultProps = {
+    displayDrawer: false,
+    listNotifications: [],
+};
 export default Notifications;
