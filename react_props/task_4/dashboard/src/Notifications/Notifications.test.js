@@ -3,6 +3,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Notifications from './Notifications';
+import PropTypes from 'prop-types';
+
 
 describe('Notifications Component tests', () => {
     test('Notifications renders without crashing', () => {
