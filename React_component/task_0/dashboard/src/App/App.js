@@ -1,11 +1,11 @@
 /* eslint-disable */
-import React from 'react';
 import './App.css';
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Login from "../Login/Login";
 import Notifications from "../Notifications/Notifications";
 import CourseList from '../CourseList/CourseList';
+import React,{Component} from "react";
 
 class App extends Component {
   render() {
@@ -32,7 +32,7 @@ class App extends Component {
           </div>
 
           <div className="App-body border">
-            {isLoggedIn === false ? <Login /> : <CourseList listCourses={listCourses} />}
+            {!isLoggedIn ? <Login /> : <CourseList listCourses={listCourses} />}
           </div>
 
           <div className="App-footer border">
