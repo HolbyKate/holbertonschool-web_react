@@ -58,4 +58,21 @@ describe("<App />", () => {
             expect(wrapper.find(CourseList).length).toBe(1);
         });
     });
+
+    // Check if LogOut component is renderring when press keys control and h
+    it('calls logOut function and shows alert when Control + H is pressed', () => {
+        const logOutMock = jest.fn();
+        const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => { });
+        const wrapper = shallow(<App logOut={logOutMock} />);
+
+        // Simulate the keydown event
+        const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' });
+        document.dispatchEvent(event);
+
+        expect(alertMock).toHaveBeenCalledWith('Logging you out');
+        expect(logOutMock).toHaveBeenCalled();
+
+        // Clean up
+        alertMock.mockRestore();
+    });
 });
