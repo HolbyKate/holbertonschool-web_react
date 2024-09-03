@@ -3,10 +3,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Notifications from './Notifications';
-import PropTypes from 'prop-types';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 
-describe("<Notifications />", () => {
+describe("<Notifications Component/>", () => {
     it("Notifications renders without crashing", () => {
         const wrapper = shallow(<Notifications />);
         expect(wrapper.exists()).toEqual(true);
@@ -43,5 +44,18 @@ describe("<Notifications />", () => {
         wrapper.update();
         const item = wrapper.find("div.Notifications");
         expect(item).toHaveLength(1);
+    });
+    it('should call console.log with the right message when markAsRead is called', () => {
+    const wrapper = shallow(<Notifications />);
+    const instance = wrapper.instance();
+
+    // Mock console.log
+    console.log = jest.fn();
+
+    // Call markAsRead with an ID
+    instance.markAsRead(1);
+
+    // Check if console.log was called with the right message
+    expect(console.log).toHaveBeenCalledWith('Notification 1 has been marked as read');
     });
 });
