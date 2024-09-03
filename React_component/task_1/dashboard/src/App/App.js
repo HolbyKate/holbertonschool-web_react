@@ -5,9 +5,42 @@ import Header from "../Header/Header";
 import Login from "../Login/Login";
 import Notifications from "../Notifications/Notifications";
 import CourseList from '../CourseList/CourseList';
-import React,{Component} from "react";
+import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 class App extends Component {
+  // Define propTypes for logOut function and other props
+  static propTypes = {
+    isLoggedIn: PropTypes.bool,
+    displayDrawer: PropTypes.bool,
+    logOut: PropTypes.func,
+  };
+
+  // Provide a default value for logOut
+  static defaultProps = {
+    isLoggedIn: false,
+    displayDrawer: false,
+    logOut: () => { },
+  };
+
+  // Handle keydown event for Control + h
+  handleKeyDown = (event) => {
+    if (event.ctrlKey && event.key === 'h') {
+      alert('Logging you out');
+      this.props.logOut();
+    }
+  };
+
+  // Add event listener when component mounts
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  // Remove event listener when component unmounts
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   render() {
     const { isLoggedIn, displayDrawer } = this.props;
 
