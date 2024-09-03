@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 function NotificationItem({ type = 'default', value = '', html = undefined }) {
     if (html) {
-        return <li data-notification-type={type} dangerouslySetInnerHTML={html}></li>;
+        return <li data-notification-type={type} dangerouslySetInnerHTML={html} onClick={() => markAsRead(id)}></li>;
     }
-    return <li data-notification-type={type}>{value}</li>;
+    return <li data-notification-type={type} onClick={() => markAsRead(id)}>{value}</li>;
 }
 
 NotificationItem.propTypes = {
@@ -15,10 +15,17 @@ NotificationItem.propTypes = {
     html: PropTypes.shape({
         __html: PropTypes.string,
     }),
+    markAsRead: PropTypes.func,
+    id: PropTypes.number,
 };
 
 NotificationItem.defaultProps = {
     type: 'default',
+    value: '',
+    html: undefined,
+    markAsRead: () => {},
+    id: 0,
+
 };
 
 export default NotificationItem;
