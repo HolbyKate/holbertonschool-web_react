@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import CourseList from "../CourseList/CourseList";
 import React, { Component } from "react";
 import BodySection from '../BodySection/BodySection';
+import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 
 
 //Create listCourses and App class
@@ -47,11 +48,21 @@ class App extends Component {
           <Header />
         </div>
         <div className="App-body">
-          {isLoggedIn === false ? <CourseList listCourses={this.listCourses} /> : <Login />}
+          {isLoggedIn ? (
+            <BodySectionWithMarginBottom title="Course list">
+              <CourseList listCourses={this.listCourses} />
+            </BodySectionWithMarginBottom>
+          ) : (
+            <BodySectionWithMarginBottom title="Log in to continue">
+              <Login />
+            </BodySectionWithMarginBottom>
+          )}
+          <BodySection title="News from the School">
+            <p>
+              Cathy test with react
+            </p>
+          </BodySection>
         </div>
-        <BodySection title="test">
-          <p>Cathy test</p>
-        </BodySection>
         <div className="App-footer">
           <Footer />
         </div>
@@ -59,6 +70,7 @@ class App extends Component {
     );
   }
 }
+
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
