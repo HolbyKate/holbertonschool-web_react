@@ -9,7 +9,7 @@ import CourseList from "../CourseList/CourseList";
 import React, { Component } from "react";
 import BodySection from '../BodySection/BodySection';
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
-
+import WithLogging from '../HOC/WithLogging';
 
 //Create listCourses and App class
 class App extends Component {
@@ -83,5 +83,5 @@ App.defaultProps = {
   displayDrawer: false,
   logOut: () => { },
 };
-
-export default App;
+// Wrapping MyComponent with WithLogging
+export default WithLogging(App);
