@@ -46,16 +46,43 @@ describe("<Notifications Component/>", () => {
         expect(item).toHaveLength(1);
     });
     it('should call console.log with the right message when markAsRead is called', () => {
-    const wrapper = shallow(<Notifications />);
-    const instance = wrapper.instance();
+        const wrapper = shallow(<Notifications />);
+        const instance = wrapper.instance();
 
-    // Mock console.log
-    console.log = jest.fn();
+        // Mock console.log
+        console.log = jest.fn();
 
-    // Call markAsRead with an ID
-    instance.markAsRead(1);
+        // Call markAsRead with an ID
+        instance.markAsRead(1);
 
-    // Check if console.log was called with the right message
-    expect(console.log).toHaveBeenCalledWith('Notification 1 has been marked as read');
+        // Check if console.log was called with the right message
+        expect(console.log).toHaveBeenCalledWith('Notification 1 has been marked as read');
+    });
+
+    it('should not rerender when updating the props with the same list', () => {
+        const listNotifications = [
+            { id: 1, type: 'default', value: 'New course available' },
+            { id: 2, type: 'urgent', value: 'New resume available' }
+        ];
+
+        const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+        const shouldUpdate = wrapper.instance().shouldComponentUpdate({ listNotifications });
+        expect(shouldUpdate).toBe(false);
+    });
+
+    it('should rerender when updating the props with a longer list', () => {
+        const listNotifications = [
+            { id: 1, type: 'default', value: 'New course available' },
+            { id: 2, type: 'urgent', value: 'New resume available' }
+        ];
+
+        const longerListNotifications = [
+            ...listNotifications,
+            { id: 3, type: 'default', value: 'New school year available' }
+        ];
+
+        const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+        const shouldUpdate = wrapper.instance().shouldComponentUpdate({ listNotifications: longerListNotifications });
+        expect(shouldUpdate).toBe(true);
     });
 });
