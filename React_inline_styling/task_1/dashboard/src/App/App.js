@@ -1,5 +1,4 @@
 /* eslint-disable */
-import "./App.css";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Login from "../Login/Login";
@@ -10,6 +9,29 @@ import React, { Component } from "react";
 import BodySection from '../BodySection/BodySection';
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 import WithLogging from '../HOC/WithLogging';
+import { StyleSheet, css } from 'aphrodite';
+
+// Define styles using Aphrodite
+const styles = StyleSheet.create({
+  app: {
+    textAlign: 'center',
+  },
+  appBody: {
+    padding: '20px',
+    fontSize: '18px',
+  },
+  appFooter: {
+    borderTop: '1px solid #E7E7E7',
+    padding: '10px 0',
+    textAlign: 'center',
+    position: 'fixed',
+    left: '0',
+    bottom: '0',
+    height: '60px',
+    width: '100%',
+    backgroundColor: '#fff',
+  },
+});
 
 //Create listCourses and App class
 class App extends Component {
@@ -44,10 +66,10 @@ class App extends Component {
     return (
       <>
         <Notifications displayDrawer={displayDrawer} />
-        <div className="App">
+        <div className={css(styles.app)}>
           <Header />
         </div>
-        <div className="App-body">
+        <div className={css(styles.appBody)}>
           {isLoggedIn ? (
             <BodySectionWithMarginBottom title="Course list">
               <CourseList listCourses={this.listCourses} />
@@ -63,7 +85,7 @@ class App extends Component {
             </p>
           </BodySection>
         </div>
-        <div className="App-footer">
+        <div className={css(styles.appFooter)}>
           <Footer />
         </div>
       </>
