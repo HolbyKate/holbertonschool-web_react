@@ -5,9 +5,17 @@ import { shallow } from 'enzyme';
 import Notifications from './Notifications';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 
 describe("<Notifications Component/>", () => {
+    beforeAll(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
+    afterAll(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
     it("Notifications renders without crashing", () => {
         const wrapper = shallow(<Notifications />);
         expect(wrapper.exists()).toEqual(true);

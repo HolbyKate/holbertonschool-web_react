@@ -4,6 +4,13 @@ import CourseList from "..CourseList/CourseList";
 import { StyleSheetTestUtils } from 'aphrodite';
 
 describe("<CourseList />", () => {
+    beforeAll(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
+    afterAll(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
     it("CourseList renders without crashing", () => {
         const wrapper = shallow(<CourseList />);
         expect(wrapper.exists()).toEqual(true);
