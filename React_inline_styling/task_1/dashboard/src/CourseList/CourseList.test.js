@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import React from "react";
 import CourseList from "..CourseList/CourseList";
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe("<CourseList />", () => {
     it("CourseList renders without crashing", () => {
@@ -87,5 +88,15 @@ describe("With CourseList containing elements", () => {
 
         expect(items.at(4).prop("textFirstCell")).toEqual("React");
         expect(items.at(4).prop("textSecondCell")).toEqual("40");
+    });
+
+    describe('Courselist test', () => {
+        beforeAll(() => {
+            StyleSheetTestUtils.suppressStyleInjection();
+        });
+
+        afterAll(() => {
+            StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+        });
     });
 });
