@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
 function CourseList({ listCourses }) {
     return (
-        <table id="CourseList">
+        <table id="CourseList" className={css(styles.table)}>
             <thead>
                 <CourseListRow textFirstCell="Available courses" isHeader={true} />
                 <CourseListRow
