@@ -7,16 +7,22 @@ import { StyleSheet, css } from 'aphrodite';
 const styles = StyleSheet.create({
     defaultItem: {
         color: 'blue',
-        padding: '10px 5px',
+        padding: '10px 8px',
+        width: '100%',
+        fontsize: '20px',
         cursor: 'pointer',
+        borderBottom: '1px solid black',
         ':hover': {
             backgroundColor: '#f0f0f0',
         },
     },
     urgentItem: {
         color: 'red',
-        padding: '10px 5px',
+        padding: '10px 8px',
+        width: '100%',
         cursor: 'pointer',
+        fontsize: '20px',
+        borderBottom: '1px solid black',
         fontWeight: 'bold',
         ':hover': {
             backgroundColor: '#f0f0f0',
