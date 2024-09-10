@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
   appBody: {
     padding: '20px',
     fontSize: '18px',
-    marginBottom: '40px',
   },
   appFooter: {
     borderTop: '1px solid #E7E7E7',
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
   },
 });
 
-//Create listCourses and App class
+// Create listCourses and App class
 class App extends Component {
   constructor(props) {
     super(props);
@@ -94,7 +93,6 @@ class App extends Component {
   }
 }
 
-
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
   displayDrawer: PropTypes.bool,
@@ -106,5 +104,6 @@ App.defaultProps = {
   displayDrawer: false,
   logOut: () => { },
 };
+
 // Wrapping MyComponent with WithLogging
 export default WithLogging(App);
