@@ -15,21 +15,73 @@ import { StyleSheet, css } from 'aphrodite';
 const styles = StyleSheet.create({
   app: {
     textAlign: 'center',
+    fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif',
+  },
+  appHeader: {
+    backgroundColor: '#fff',
+    minHeight: '20vh',
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: 'calc(10px + 2vmin)',
+    color: 'rgb(233, 53, 53)',
+    borderBottom: '5px solid rgb(233, 53, 53)',
+  },
+  appLogo: {
+    height: '300px',
+    width: 'auto',
+    marginRight: '20px',
+    objectFit: 'contain',
   },
   appBody: {
     padding: '20px',
+    color: '#000',
+    textAlign: 'left',
+    fontSize: '24px',
+    marginLeft: '50px',
+    marginTop: '25px',
+  },
+  login: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    backgroundColor: 'white',
+    padding: '10px',
+    maxWidth: '600px',
+    margin: '0 auto',
+  },
+  loginLabel: {
     fontSize: '18px',
   },
+  loginInput: {
+    padding: '2px',
+    border: '1px solid lightgrey',
+    borderRadius: '2px',
+    flex: 1,
+  },
+  loginButton: {
+    backgroundColor: 'white',
+    border: '1px solid lightgrey',
+    borderRadius: '5px',
+    padding: '2px 8px',
+    cursor: 'pointer',
+  },
   appFooter: {
-    borderTop: '1px solid #E7E7E7',
-    padding: '10px 0',
-    textAlign: 'center',
-    position: 'fixed',
-    left: '0',
-    bottom: '0',
-    height: '60px',
-    width: '100%',
     backgroundColor: '#fff',
+    color: '#000',
+    padding: '10px',
+    position: 'fixed',
+    bottom: '0',
+    width: '100%',
+    textAlign: 'center',
+    fontSize: '24px',
+    fontStyle: 'italic',
+    borderTop: '5px solid rgb(233, 53, 53)',
+  },
+  h1: {
+    marginLeft: '50px',
+    textAlign: 'left',
+    color: 'rgb(233, 53, 53)',
+    fontSize: '50px',
   },
 });
 
@@ -67,7 +119,7 @@ class App extends Component {
       <>
         <Notifications displayDrawer={displayDrawer} />
         <div className={css(styles.app)}>
-          <Header />
+          <Header className={css(styles.appHeader)} />
         </div>
         <div className={css(styles.appBody)}>
           {isLoggedIn ? (
@@ -76,11 +128,11 @@ class App extends Component {
             </BodySectionWithMarginBottom>
           ) : (
             <BodySectionWithMarginBottom title="Log in to continue">
-              <Login />
+              <Login className={css(styles.login)} />
             </BodySectionWithMarginBottom>
           )}
           <BodySection title="News from the School">
-            <p>
+            <p className={css(styles.h1)}>
               Cathy test with react
             </p>
           </BodySection>
