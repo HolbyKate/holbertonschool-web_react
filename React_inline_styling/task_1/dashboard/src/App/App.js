@@ -105,5 +105,5 @@ App.defaultProps = {
   logOut: () => { },
 };
 
-// Wrapping MyComponent with WithLogging
+// Wrapping App with WithLogging
 export default WithLogging(App);
