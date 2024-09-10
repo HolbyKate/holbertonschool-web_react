@@ -10,10 +10,8 @@ const styles = StyleSheet.create({
     login: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        gap: '8px',
+        alignItems: 'flex-start',
         backgroundColor: 'white',
-        padding: '20px',
         maxWidth: '600px',
         margin: '0 auto',
     },
@@ -22,29 +20,31 @@ const styles = StyleSheet.create({
         marginBottom: '3px',
     },
     input: {
-        padding: '8px',
-        border: '1px solid lightgrey',
-        borderRadius: '4px',
-        flex: 1,
+        border: 'none',
+        width: '100%',
+        maxWidth: '400px',
     },
     button: {
         backgroundColor: 'white',
         border: '1px solid lightgrey',
         borderRadius: '5px',
-        padding: '2px 8px',
+        padding: '8px 16px',
         cursor: 'pointer',
+
     },
 });
 
 function Login() {
     return (
         <div className={css(styles.login)}>
-            <label htmlFor="email" className={css(styles.label)}>Email:</label>
-            <input type="email" id="email" name="email" className={css(styles.input)} />
-            <br />
-            <label htmlFor="password" className={css(styles.label)}>Password:</label>
-            <input type="password" id="password" name="password" className={css(styles.input)} />
-            <br />
+            <div className={css(styles.formGroup)}>
+                <label htmlFor="email" className={css(styles.label)}>Email:</label>
+                <input type="email" id="email" name="email" className={css(styles.input)} />
+            </div>
+            <div className={css(styles.formGroup)}>
+                <label htmlFor="password" className={css(styles.label)}>Password:</label>
+                <input type="password" id="password" name="password" className={css(styles.input)} />
+            </div>
             <button type="button" className={css(styles.button)}>OK</button>
         </div>
     );
