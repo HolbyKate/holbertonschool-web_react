@@ -7,20 +7,25 @@ import PropTypes from 'prop-types';
 import NotificationItemShape from './NotificationItemShape';
 import { StyleSheet, css } from 'aphrodite';
 
-
-//Import Aphrodite component
-
 const styles = StyleSheet.create({
     menuItem: {
         textAlign: "right",
         marginBottom: "10px",
+        cursor: 'pointer',
     },
     notifications: {
         border: "1px dashed rgb(233, 53, 53)",
         padding: "10px",
         margin: "10px 0",
-        position: "relative",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "white",
+        zIndex: 1000,
         display: "block",
+        fontSize: "20px",
     },
     closeButton: {
         background: "transparent",
@@ -45,38 +50,50 @@ const styles = StyleSheet.create({
         color: "red",
     },
 });
+
 class Notifications extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            displayDrawer: false,  // Manage displayDrawer state here
+        };
         this.markAsRead = this.markAsRead.bind(this);
+        this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);  // Bind methods
+        this.handleHideDrawer = this.handleHideDrawer.bind(this);
     }
 
-    shouldComponentUpdate(nextProps) {
-        return nextProps.listNotifications.length > this.props.listNotifications.length;
+    handleDisplayDrawer() {
+        this.setState({ displayDrawer: true });
     }
 
+    handleHideDrawer() {
+        this.setState({ displayDrawer: false });
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextState.displayDrawer !== this.state.displayDrawer ||
+        nextProps.listNotifications.length > this.props.listNotifications.length;
+    }
 
     markAsRead(id) {
         console.log(`Notification ${id} has been marked as read`);
     }
 
     render() {
-        const { displayDrawer, listNotifications } = this.props;
+        const { listNotifications } = this.props;
+        const { displayDrawer } = this.state;
+
         return (
             <>
-                <div className={css(styles.menuItem)}>
+                <div className={css(styles.menuItem)} onClick={this.handleDisplayDrawer}>
                     <p>Your notifications</p>
                 </div>
                 {displayDrawer && (
                     <div className={css(styles.notifications)}>
                         <button
-                            style={{
-                                background: "transparent",
-                                border: "none",
-                                position: "absolute",
-                                right: 20,
-                            }}
+                            className={css(styles.closeButton)}
                             aria-label="close"
+                            onClick={this.handleHideDrawer}
                         >
                             <img src={closeIcon} alt="close-icon" className={css(styles.closeIcon)} />
                         </button>
@@ -105,12 +122,11 @@ class Notifications extends Component {
 }
 
 Notifications.propTypes = {
-    displayDrawer: PropTypes.bool,
     listNotifications: PropTypes.arrayOf(NotificationItemShape),
 };
 
 Notifications.defaultProps = {
-    displayDrawer: false,
     listNotifications: [],
 };
+
 export default Notifications;
