@@ -93,4 +93,28 @@ describe("<Notifications Component/>", () => {
         const shouldUpdate = wrapper.instance().shouldComponentUpdate({ listNotifications: longerListNotifications });
         expect(shouldUpdate).toBe(true);
     });
+
+    // Test for handleDisplayDrawer being called when clicking on menu item
+    it('should call handleDisplayDrawer when clicking on the menu item', () => {
+        const handleDisplayDrawerSpy = jest.fn();
+        const wrapper = shallow(<Notifications />);
+        wrapper.instance().handleDisplayDrawer = handleDisplayDrawerSpy;  // Mock the function
+        wrapper.update();
+
+        // Simulate click on menu item
+        wrapper.find('div.menuItem').simulate('click');
+        expect(handleDisplayDrawerSpy).toHaveBeenCalled();  // Verify function call
+    });
+
+    // Test for handleHideDrawer being called when clicking on close button
+    it('should call handleHideDrawer when clicking on the close button', () => {
+        const handleHideDrawerSpy = jest.fn();
+        const wrapper = shallow(<Notifications displayDrawer={true} />);
+        wrapper.instance().handleHideDrawer = handleHideDrawerSpy;  // Mock the function
+        wrapper.update();
+
+        // Simulate click on close button
+        wrapper.find('button[aria-label="close"]').simulate('click');
+        expect(handleHideDrawerSpy).toHaveBeenCalled();  // Verify function call
+    });
 });
