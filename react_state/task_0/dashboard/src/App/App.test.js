@@ -75,4 +75,25 @@ describe("<App />", () => {
         // Clean up
         alertMock.mockRestore();
     });
+    // Test to verify the default state for displayDrawer is false
+    it('sets the default state for displayDrawer to false', () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.state('displayDrawer')).toBe(false);
+    });
+
+    // Test to verify handleDisplayDrawer changes displayDrawer state to true
+    it('updates state to displayDrawer true after calling handleDisplayDrawer', () => {
+        const wrapper = shallow(<App />);
+        wrapper.instance().handleDisplayDrawer();  // Call handleDisplayDrawer
+        expect(wrapper.state('displayDrawer')).toBe(true);
+    });
+
+    // Test to verify handleHideDrawer changes displayDrawer state to false
+    it('updates state to displayDrawer false after calling handleHideDrawer', () => {
+        const wrapper = shallow(<App />);
+        wrapper.instance().handleDisplayDrawer();  // First, set it to true
+        expect(wrapper.state('displayDrawer')).toBe(true);  // Verify it's true
+        wrapper.instance().handleHideDrawer();  // Then, call handleHideDrawer
+        expect(wrapper.state('displayDrawer')).toBe(false);
+    });
 });
