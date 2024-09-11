@@ -71,8 +71,10 @@ class Notifications extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextState.displayDrawer !== this.state.displayDrawer ||
-        nextProps.listNotifications.length > this.props.listNotifications.length;
+        return (
+            nextState.displayDrawer !== this.state.displayDrawer ||
+        nextProps.listNotifications.length > this.props.listNotifications.length
+        );
     }
 
     markAsRead(id) {
@@ -124,8 +126,8 @@ class Notifications extends Component {
 Notifications.propTypes = {
     listNotifications: PropTypes.arrayOf(NotificationItemShape).isRequired,
     displayDrawer: PropTypes.bool,
-    handleDisplayDrawer: PropTypes.func,
-    handleHideDrawer: PropTypes.func,
+    handleDisplayDrawer: PropTypes.func.isRequired,
+    handleHideDrawer: PropTypes.func.isRequired,
 };
 
 Notifications.defaultProps = {

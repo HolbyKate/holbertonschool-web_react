@@ -96,4 +96,24 @@ describe("<App />", () => {
         wrapper.instance().handleHideDrawer();  // Then, call handleHideDrawer
         expect(wrapper.state('displayDrawer')).toBe(false);
     });
+
+    it('calls handleDisplayDrawer when clicking on the menu item', () => {
+        const wrapper = shallow(<Notifications />);
+        const instance = wrapper.instance();
+        const spy = jest.spyOn(instance, 'handleDisplayDrawer');  // Use spy
+        wrapper.update();
+
+        wrapper.find('div.menuItem').simulate('click');  // Simulate click
+        expect(spy).toHaveBeenCalled();  // Ensure the function is called
+    });
+
+    it('calls handleHideDrawer when clicking on the close button', () => {
+        const wrapper = shallow(<Notifications displayDrawer />);
+        const instance = wrapper.instance();
+        const spy = jest.spyOn(instance, 'handleHideDrawer');  // Use spy
+        wrapper.update();
+
+        wrapper.find('button[aria-label="close"]').simulate('click');  // Simulate click
+        expect(spy).toHaveBeenCalled();  // Ensure the function is called
+    });
 });

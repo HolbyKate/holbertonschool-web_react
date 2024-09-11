@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
 class App extends Component {
   constructor(props) {
     super(props);
-    super(props);
     this.state = {
       displayDrawer: false,
     };
