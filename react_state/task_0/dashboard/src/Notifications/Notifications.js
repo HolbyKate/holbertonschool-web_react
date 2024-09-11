@@ -55,7 +55,7 @@ class Notifications extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            displayDrawer: false,  // Manage displayDrawer state here
+            displayDrawer: false,
         };
         this.markAsRead = this.markAsRead.bind(this);
         this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);  // Bind methods
@@ -123,10 +123,16 @@ class Notifications extends Component {
 
 Notifications.propTypes = {
     listNotifications: PropTypes.arrayOf(NotificationItemShape).isRequired,
+    displayDrawer: PropTypes.bool,
+    handleDisplayDrawer: PropTypes.func,
+    handleHideDrawer: PropTypes.func,
 };
 
 Notifications.defaultProps = {
     listNotifications: [],
+    displayDrawer: false,
+    handleDisplayDrawer: () => {},
+    handleHideDrawer: () => {},
 };
 
 export default Notifications;
