@@ -15,25 +15,25 @@ describe("<App />", () => {
         expect(wrapper.exists()).toEqual(true);
     });
 
-    //Import Notification component
+    // Import Notification component
     it('contains the Notifications component', () => {
         const wrapper = shallow(<App />);
         expect(wrapper.find(Notifications).length).toBe(1);
     });
 
-    //Import Header component
+    // Import Header component
     it('contains the Header component', () => {
         const wrapper = shallow(<App />);
         expect(wrapper.find(Header).length).toBe(1);
     });
 
-    //Import Login component
+    // Import Login component
     it('contains the Login component', () => {
         const wrapper = shallow(<App />);
         expect(wrapper.find(Login).length).toBe(1);
     });
 
-    //Import Footer component
+    // Import Footer component
     it('contains the Footer component', () => {
         const wrapper = shallow(<App />);
         expect(wrapper.find(Footer).length).toBe(1);
@@ -59,7 +59,7 @@ describe("<App />", () => {
         });
     });
 
-    // Check if LogOut component is renderring when press keys control and h
+    // Check if LogOut component is rendering when pressing keys Control and H
     it('calls logOut function and shows alert when Control + H is pressed', () => {
         const logOutMock = jest.fn();
         const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => { });
@@ -75,6 +75,7 @@ describe("<App />", () => {
         // Clean up
         alertMock.mockRestore();
     });
+
     // Test to verify the default state for displayDrawer is false
     it('sets the default state for displayDrawer to false', () => {
         const wrapper = shallow(<App />);
@@ -96,24 +97,22 @@ describe("<App />", () => {
         wrapper.instance().handleHideDrawer();  // Then, call handleHideDrawer
         expect(wrapper.state('displayDrawer')).toBe(false);
     });
+});
 
+describe("<Notifications />", () => {
+    // Test to verify handleDisplayDrawer is called when clicking on the menu item
     it('calls handleDisplayDrawer when clicking on the menu item', () => {
-        const wrapper = shallow(<Notifications />);
-        const instance = wrapper.instance();
-        const spy = jest.spyOn(instance, 'handleDisplayDrawer');  // Use spy
-        wrapper.update();
-
+        const handleDisplayDrawer = jest.fn();
+        const wrapper = shallow(<Notifications handleDisplayDrawer={handleDisplayDrawer} />);
         wrapper.find('div.menuItem').simulate('click');  // Simulate click
-        expect(spy).toHaveBeenCalled();  // Ensure the function is called
+        expect(handleDisplayDrawer).toHaveBeenCalled();  // Ensure the function is called
     });
 
+    // Test to verify handleHideDrawer is called when clicking on the close button
     it('calls handleHideDrawer when clicking on the close button', () => {
-        const wrapper = shallow(<Notifications displayDrawer />);
-        const instance = wrapper.instance();
-        const spy = jest.spyOn(instance, 'handleHideDrawer');  // Use spy
-        wrapper.update();
-
+        const handleHideDrawer = jest.fn();
+        const wrapper = shallow(<Notifications displayDrawer handleHideDrawer={handleHideDrawer} />);
         wrapper.find('button[aria-label="close"]').simulate('click');  // Simulate click
-        expect(spy).toHaveBeenCalled();  // Ensure the function is called
+        expect(handleHideDrawer).toHaveBeenCalled();  // Ensure the function is called
     });
 });
