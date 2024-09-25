@@ -1,4 +1,5 @@
 import * as data from '../notifications.json';
+import { normalize, schema } from 'normalizr';
 
 /**
  * Returns all notifications for a given userId.
@@ -13,3 +14,19 @@ export const getAllNotificationsByUser = (userId) => {
         (notification) => notification.author.id === userId
     );
 };
+    const user = new schema.Entity('users');
+    const message = new schema.Entity('messages', {}, { idAttribute: 'guid' });
+
+    const notification = new schema.Entity(
+        'notifications',
+        {
+            author: user,
+            context: message,
+        },
+        { idAttribute: 'id' }
+    );
+
+    // Normalize the notifications data
+    const normalizedData = normalize(data.notifications, [notification]);
+
+    export { user, message, notification, normalizedData };

@@ -1,4 +1,4 @@
-import * as data from '../notifications.json';
+import * as data from '../../notifications.json';
 
 /**
  * Returns all notifications for a given userId.
@@ -12,4 +12,4 @@ export const getAllNotificationsByUser = (userId) => {
     return data.notifications.filter(
         (notification) => notification.author.id === userId
     );
-};
+}
