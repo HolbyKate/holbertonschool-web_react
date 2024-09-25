@@ -9,11 +9,11 @@ class Notifications extends Component {
 	constructor(props) {
 		super(props);
 		this.markAsRead = this.markAsRead.bind(this);
-	  }
+	}
 
-	  static contextType = AppContext;
+	static contextType = AppContext;
 
-	  markAsRead(id) {
+	markAsRead(id) {
 		const { markNotificationAsRead } = this.context;
 		markNotificationAsRead(id);
 	}
@@ -21,56 +21,56 @@ class Notifications extends Component {
 	render() {
 		const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer } = this.props;
 
-	const handleClick = () => {
-		console.log('Close button has been clicked');
-	};
+		const handleClick = () => {
+			console.log('Close button has been clicked');
+		};
 
-	return (
-		<React.Fragment>
-			{!displayDrawer && (
-          <div data-testid='menuItem' className={css(styles.menuItem)} onClick={handleDisplayDrawer}>
-            Your notifications
-          </div>
-        )}
-			{displayDrawer && (
-				<div className={css(styles.notifications)} data-testid="notifications">
-					{listNotifications && listNotifications.length > 0 && (
-						<p className={css(styles.text)}>Here is the list of notifications</p>
-					)}
-					<button data-testid='close-button' onClick={() => { handleHideDrawer(); handleClick(); }} className={css(styles.closeButton)} aria-label='Close'>X</button>
-					<ul className={css(styles.list)}>
-						{listNotifications.length > 0 ? (
-							listNotifications.map(({ id, html, type, value }) => (
-								<NotificationItem
-									key={id}
-									id={id}
-									html={html}
-									type={type}
-									value={value}
-									markAsRead={() => this.markAsRead(id)}
-								/>
-							))
-						) : (
-							<li>No new notification for now</li>
+		return (
+			<React.Fragment>
+				{!displayDrawer && (
+					<div data-testid='menuItem' className={css(styles.menuItem)} onClick={handleDisplayDrawer}>
+						Your notifications
+					</div>
+				)}
+				{displayDrawer && (
+					<div className={css(styles.notifications)} data-testid="notifications">
+						{listNotifications && listNotifications.length > 0 && (
+							<p className={css(styles.text)}>Here is the list of notifications</p>
 						)}
-					</ul>
-				</div>
-			)}
-		</React.Fragment>
-	);
-}
+						<button data-testid='close-button' onClick={() => { handleHideDrawer(); handleClick(); }} className={css(styles.closeButton)} aria-label='Close'>X</button>
+						<ul className={css(styles.list)}>
+							{listNotifications.length > 0 ? (
+								listNotifications.map(({ id, html, type, value }) => (
+									<NotificationItem
+										key={id}
+										id={id}
+										html={html}
+										type={type}
+										value={value}
+										markAsRead={() => this.markAsRead(id)}
+									/>
+								))
+							) : (
+								<li>No new notification for now</li>
+							)}
+						</ul>
+					</div>
+				)}
+			</React.Fragment>
+		);
+	}
 }
 
 const opacityChange = {
 	'0%': { opacity: 0.5 },
 	'100%': { opacity: 1 },
-  };
+};
 
-  const bounce = {
+const bounce = {
 	'0%': { transform: 'translateY(0px)' },
 	'50%': { transform: 'translateY(-5px)' },
 	'100%': { transform: 'translateY(5px)' },
-  };
+};
 
 const styles = StyleSheet.create({
 	notifications: {
@@ -83,17 +83,17 @@ const styles = StyleSheet.create({
 		height: '20vh',
 		boxSizing: 'border-box',
 		'@media (max-width: 900px)': {
-		position: 'fixed',
-		top: -5,
-		left: 0,
-		right: 0,
-		bottom: 0,
-		width: '100vw',
-		height: '100vh',
-		backgroundColor: 'white',
-		zIndex: 1000,
-		border: 'None',
-		padding: '0px',
+			position: 'fixed',
+			top: -5,
+			left: 0,
+			right: 0,
+			bottom: 0,
+			width: '100vw',
+			height: '100vh',
+			backgroundColor: 'white',
+			zIndex: 1000,
+			border: 'None',
+			padding: '0px',
 		}
 	},
 
@@ -104,12 +104,12 @@ const styles = StyleSheet.create({
 		padding: '10px',
 		cursor: 'pointer',
 		':hover': {
-		  animationName: [opacityChange, bounce],
-		  animationDuration: '1s, 0.5s',
-		  animationIterationCount: '3, 3',
-		  animationTimingFunction: 'ease-in-out',
+			animationName: [opacityChange, bounce],
+			animationDuration: '1s, 0.5s',
+			animationIterationCount: '3, 3',
+			animationTimingFunction: 'ease-in-out',
 		},
-	  },
+	},
 
 	closeButton: {
 		position: 'absolute',
@@ -123,13 +123,13 @@ const styles = StyleSheet.create({
 
 	text: {
 		'@media (max-width: 900px)': {
-		fontSize: '20px',
+			fontSize: '20px',
 		}
 	},
 
 	list: {
 		'@media (max-width: 900px)': {
-		paddingLeft: '0',
+			paddingLeft: '0',
 		}
 	}
 });
@@ -146,9 +146,9 @@ Notifications.propTypes = {
 Notifications.defaultProps = {
 	displayDrawer: false,
 	listNotifications: [],
-	handleDisplayDrawer: () => {},
-	handleHideDrawer: () => {},
-	markNotificationAsRead: () => {},
+	handleDisplayDrawer: () => { },
+	handleHideDrawer: () => { },
+	markNotificationAsRead: () => { },
 };
 
 export default Notifications;
