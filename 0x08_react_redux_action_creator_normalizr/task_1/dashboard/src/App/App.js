@@ -86,9 +86,9 @@ class App extends Component {
 	markNotificationAsRead(id) {
 		this.setState((prevState) => ({
 			listNotifications: prevState.listNotifications.filter(
-			  (notification) => notification.id !== id
+				(notification) => notification.id !== id
 			),
-		  }));
+		}));
 	}
 
 	render() {
@@ -107,28 +107,28 @@ class App extends Component {
 				logOut: this.logOut,
 				listNotifications: this.state.listNotifications,
 				markNotificationAsRead: this.markNotificationAsRead,
-			  }}>
-			<React.Fragment>
-				<Notifications listNotifications={listNotifications}
-					displayDrawer={displayDrawer}
-					handleDisplayDrawer={this.handleDisplayDrawer}
-					handleHideDrawer={this.handleHideDrawer}
-				/>
-				<div className="App">
-					<Header />
-					{user.isLoggedIn ? (
-						<BodySectionWithMarginBottom title="Course list">
-							<CourseList listCourses={listCourses} />
-						</BodySectionWithMarginBottom>
-					) : (
-						<BodySectionWithMarginBottom title="Log in to continue">
-							<Login className={css(styles.body)} />
-						</BodySectionWithMarginBottom>
-					)}
-					<BodySection title="News from the School" children="Cathy test with react" />
-					<Footer />
-				</div>
-			</React.Fragment>
+			}}>
+				<React.Fragment>
+					<Notifications listNotifications={listNotifications}
+						displayDrawer={displayDrawer}
+						handleDisplayDrawer={this.handleDisplayDrawer}
+						handleHideDrawer={this.handleHideDrawer}
+					/>
+					<div className="App">
+						<Header />
+						{user.isLoggedIn ? (
+							<BodySectionWithMarginBottom title="Course list">
+								<CourseList listCourses={listCourses} />
+							</BodySectionWithMarginBottom>
+						) : (
+							<BodySectionWithMarginBottom title="Log in to continue">
+								<Login className={css(styles.body)} />
+							</BodySectionWithMarginBottom>
+						)}
+						<BodySection title="News from the School" children="Cathy test with react" />
+						<Footer />
+					</div>
+				</React.Fragment>
 			</AppContext.Provider>
 		);
 	}
