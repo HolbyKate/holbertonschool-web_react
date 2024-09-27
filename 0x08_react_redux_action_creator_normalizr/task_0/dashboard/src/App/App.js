@@ -125,7 +125,7 @@ class App extends Component {
 							<Login className={css(styles.body)} />
 						</BodySectionWithMarginBottom>
 					)}
-					<BodySection title="News from the School" children="Some news from the school! :D" />
+					<BodySection title="News from the School" children="Cathy test with react" />
 					<Footer />
 				</div>
 			</React.Fragment>
