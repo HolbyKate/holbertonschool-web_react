@@ -127,4 +127,9 @@ App.propTypes = {
   logOut: PropTypes.func,
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return { isLoggedIn: state.ui.isUserLoggedIn };
+}
+
+export { mapStateToProps };
+export default connect(mapStateToProps)(App);
