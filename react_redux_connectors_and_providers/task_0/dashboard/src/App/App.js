@@ -9,6 +9,7 @@ import CourseList from '../CourseList/CourseList';
 import PropTypes from 'prop-types';
 import BodySection from '../BodySection/BodySection';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
+import { connect } from 'react-redux';
 
 class App extends Component {
   constructor(props) {
