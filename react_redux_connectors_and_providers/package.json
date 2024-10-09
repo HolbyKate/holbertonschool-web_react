@@ -2,5 +2,10 @@
   "dependencies": {
     "react-redux": "^9.1.2",
     "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
   }
 }

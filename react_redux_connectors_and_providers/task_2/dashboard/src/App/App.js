@@ -76,9 +76,7 @@ class App extends Component {
             }
           </div>
 
-          <BodySection title="News from the School">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          </BodySection>
+          <BodySection title="News from the School" children="Cathy test with react" />
 
           <div className={css(styles.border)}>
             <Footer />
