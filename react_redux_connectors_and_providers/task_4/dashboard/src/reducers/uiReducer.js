@@ -14,7 +14,7 @@ export const appInitialState = {
     user: null
 };
 
-export function uiReducer(state = Map(appInitialState), action) {
+export const uiReducer = (state = Map(appInitialState), action) => {
     switch (action.type) {
         case DISPLAY_NOTIFICATION_DRAWER:
             return state.set('isNotificationDrawerVisible', true);
@@ -35,4 +35,6 @@ export function uiReducer(state = Map(appInitialState), action) {
         default:
             return state;
     }
-}
+};
+
+export default uiReducer;

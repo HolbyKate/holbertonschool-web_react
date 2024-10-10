@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "author": "Cathy Aug",
+        "context": "New course available",
+        "guid": "1234-5678-9012"
+    },
+    {
+        "id": 2,
+        "author": "Paul Smith",
+        "context": "New resume available",
+        "guid": "2345-6789-0123"
+    },
+    {
+        "id": 3,
+        "author": "Alice Johnson",
+        "context": "You have a new message",
+        "guid": "3456-7890-1234"
+    }
+]

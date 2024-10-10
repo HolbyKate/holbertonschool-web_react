@@ -10,7 +10,7 @@ import CourseList from '../CourseList/CourseList';
 import PropTypes from 'prop-types';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import BodySection from '../BodySection/BodySection';
-import { displayNotificationDrawer, hideNotificationDrawer, loginRequest } from '../actions';
+import { displayNotificationDrawer, hideNotificationDrawer, loginRequest, logout } from '../actions/uiActionCreators';
 
 class App extends Component {
   constructor(props) {

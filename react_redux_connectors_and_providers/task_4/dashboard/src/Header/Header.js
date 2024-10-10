@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'; // Import connect
 import { StyleSheet, css } from 'aphrodite';
 import logo from '../assets/logo.jpg';
-import { logout } from '../actions/authActions'; // Import the logout action creator
+import { logout } from '../actions/uiActionCreators';
 
 function Header({ user, logout }) { // Receive user and logout props
   const handleLogout = () => {
