@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import closeIcon from '../assets/close-icon.png';
 import NotificationItem from './NotificationItem';
-import NotificationItemShape from './NotificationItemShape';
 import { StyleSheet, css } from 'aphrodite';
-import { fetchNotifications } from '../actions/notificationActionCreators';
+import { fetchNotifications, markAsRead } from '../actions/notificationActionCreators';
 
 class Notifications extends Component {
   constructor(props) {
@@ -19,8 +18,10 @@ class Notifications extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.messages.length > this.props.messages.length ||
-    nextState.displayDrawer !== this.state.displayDrawer;
+    return (
+      nextProps.messages.length > this.props.messages.length ||
+      nextState.displayDrawer !== this.state.displayDrawer
+    );
   }
 
   componentDidMount() {
@@ -29,10 +30,12 @@ class Notifications extends Component {
 
   markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
+    this.props.markAsRead(id);
   }
 
   handleClick() {
     console.log("Close button has been clicked");
+    this.toggleDisplay();
   }
 
   toggleDisplay() {
@@ -181,7 +184,22 @@ const styles = StyleSheet.create({
 });
 
 Notifications.propTypes = {
-  listNotifications: PropTypes.arrayOf(NotificationItemShape),
+  listNotifications: PropTypes.array,
+  fetchNotifications: PropTypes.func.isRequired,
+  markAsRead: PropTypes.func.isRequired,
 };
 
-export default Notifications;
+Notifications.defaultProps = {
+  listNotifications: [],
+};
+
+const mapStateToProps = (state) => ({
+  messages: state.notifications.messages,
+});
+
+const mapDispatchToProps = {
+  fetchNotifications,
+  markAsRead
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications);

@@ -4,7 +4,6 @@ import Notifications from '../Notifications/Notifications';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import { getLatestNotification } from '../utils/utils';
 import { StyleSheet, css } from 'aphrodite';
 import CourseList from '../CourseList/CourseList';
 import PropTypes from 'prop-types';
@@ -47,12 +46,6 @@ class App extends Component {
       { id: 3, name: 'React', credit: 40 },
     ];
 
-    const listNotifications = [
-      { id: 1, type: 'default', value: 'New course available' },
-      { id: 2, type: 'urgent', value: 'New resume available' },
-      { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
-    ];
-
     return (
       <>
         <div className={css(styles.App)}>
@@ -60,7 +53,6 @@ class App extends Component {
             <Header />
             <Notifications
               displayDrawer={displayDrawer}
-              listNotifications={listNotifications}
               handleHideDrawer={hideNotificationDrawer}
             />
           </div>
@@ -76,7 +68,9 @@ class App extends Component {
             }
           </div>
 
-          <BodySection title="News from the School" children="Cathy test with react" />
+          <BodySection title="News from the School">
+            Cathy test with react
+          </BodySection>
 
           <div className={css(styles.border)}>
             <Footer />
