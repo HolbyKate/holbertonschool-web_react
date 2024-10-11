@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import closeIcon from '../assets/close-icon.png';
 import NotificationItem from './NotificationItem';
 import NotificationItemShape from './NotificationItemShape';
 import { StyleSheet, css } from 'aphrodite';
+import { fetchNotifications } from '../actions/notificationActionCreators';
 
 class Notifications extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      prevListLength: 0,
       displayDrawer: true
     };
     this.markAsRead = this.markAsRead.bind(this);
@@ -18,15 +19,12 @@ class Notifications extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.listNotifications.length > nextState.prevListLength;
+    return nextProps.messages.length > this.props.messages.length ||
+    nextState.displayDrawer !== this.state.displayDrawer;
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.listNotifications !== this.props.listNotifications) {
-      this.setState({
-        prevListLength: prevProps.listNotifications.length
-      });
-    }
+  componentDidMount() {
+    this.props.fetchNotifications();
   }
 
   markAsRead(id) {
@@ -44,7 +42,7 @@ class Notifications extends Component {
   }
 
   render() {
-    const { listNotifications } = this.props;
+    const { messages } = this.props;
     const { displayDrawer } = this.state;
 
     return (
@@ -59,12 +57,12 @@ class Notifications extends Component {
             </button>
             <p>Here is the list of notifications</p>
             <ul className={css(styles.notificationList)}>
-              {listNotifications && listNotifications.length > 0 ? (
-                listNotifications.map(notification => (
+              {messages && messages.length > 0 ? (
+                messages.map(notification => (
                   <li
                     key={notification.id}
                     className={css(
-                      styles.notification,
+                      styles.notifications,
                       styles.listItem,
                       notification.type === 'default' && styles.default,
                       notification.type === 'urgent' && styles.urgent
