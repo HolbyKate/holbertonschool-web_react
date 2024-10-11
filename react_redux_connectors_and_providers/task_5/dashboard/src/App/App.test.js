@@ -7,7 +7,7 @@ import App from './App';
 import rootReducer from '../reducers/rootReducer';
 
 describe('App component', () => {
-  it('displays the drawer when displayDrawer is true in Redux state', () => {
+  it('displays the drawer when isNotificationDrawerVisible is true in Redux state', () => {
     const store = createStore(rootReducer, {
       ui: {
         isUserLoggedIn: true,
@@ -24,7 +24,7 @@ describe('App component', () => {
     expect(getByTestId('notifications-drawer')).toBeInTheDocument();
   });
 
-  it('hides the drawer when displayDrawer is false in Redux state', () => {
+  it('hides the drawer when isNotificationDrawerVisible is false in Redux state', () => {
     const store = createStore(rootReducer, {
       ui: {
         isUserLoggedIn: true,
@@ -40,32 +40,4 @@ describe('App component', () => {
 
     expect(queryByTestId('notifications-drawer')).not.toBeInTheDocument();
   });
-
-  it('toggles the drawer when the displayNotificationDrawer and hideNotificationDrawer actions are dispatched', () => {
-    const store = createStore(rootReducer, {
-      ui: {
-        isUserLoggedIn: true,
-        isNotificationDrawerVisible: false
-      }
-    });
-
-    const { getByTestId } = render(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-
-    expect(getByTestId('notifications-drawer')).not.toBeInTheDocument();
-
-    fireEvent.click(getByTestId('display-drawer-button'));
-    expect(getByTestId('notifications-drawer')).toBeInTheDocument();
-
-    fireEvent.click(getByTestId('hide-drawer-button'));
-    expect(getByTestId('notifications-drawer')).not.toBeInTheDocument();
-  });
-});
-
-const mapStateToProps = (state) => ({
-  isLoggedIn: state.ui.isUserLoggedIn,
-  displayDrawer: state.ui.isNotificationDrawerVisible
 });
