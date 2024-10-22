@@ -5,7 +5,7 @@ import closeIcon from '../assets/close-icon.png';
 import NotificationItem from './NotificationItem';
 import { StyleSheet, css } from 'aphrodite';
 import { fetchNotifications, markAsRead } from '../actions/notificationActionCreators';
-import { getUnreadNotifications } from '../selectors/notificationSelector';
+import { getUnreadNotificationsByType } from '../selectors/notificationSelector';
 
 class Notifications extends Component {
   constructor(props) {
@@ -203,7 +203,7 @@ Notifications.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  listNotifications: getUnreadNotifications(state),
+  listNotifications: getUnreadNotificationsByType(state),
 });
 
 const mapDispatchToProps = {
